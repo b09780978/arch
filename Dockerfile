@@ -19,6 +19,7 @@ RUN pacman -Syyu --needed base --noconfirm \
 && pacman -S --noconfirm which wget git net-tools \
 && pacman -S --noconfirm bash-completion tmux \
 && pacman -S --noconfirm neovim python-pynvim \
+&& pacman -S --noconfirm nodejs npm \
 && pacman -S --noconfirm zsh zsh-completions zsh-syntax-highlighting \
 && git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh \
 && mkdir -p ~/.config/nvim \
@@ -31,7 +32,7 @@ RUN pacman -S --noconfirm python2 python3 \
 && pip install -U pip \
 && pip install requests pyquery ipython \
 && pip3 install -U pip \
-&& pip3 install requests pyquery pipenv ipython
+&& pip3 install requests pyquery node_vm2 pipenv ipython
 
 RUN chsh -s /bin/zsh \
 && ln ~/.vimrc ~/.config/nvim/init.vim \
