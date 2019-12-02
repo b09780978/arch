@@ -24,7 +24,7 @@ RUN pacman -Syyu --needed base --noconfirm \
 && git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh \
 && mkdir -p ~/.config/nvim \
 && curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
-&& git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+&& git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
 
 # install python environment
 RUN pacman -S --noconfirm python2 python3 \
