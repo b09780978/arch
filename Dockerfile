@@ -12,7 +12,7 @@ WORKDIR /root
 COPY .bashrc .
 COPY .vimrc .
 COPY .zshrc .
-COPY .tmux.conf .
+COPY .conf .
 
 # install basic tool
 RUN pacman -Syyu --needed base --noconfirm \
@@ -21,22 +21,24 @@ RUN pacman -Syyu --needed base --noconfirm \
 && pacman -S --noconfirm neovim python-pynvim \
 && pacman -S --noconfirm nodejs npm \
 && pacman -S --noconfirm zsh zsh-completions zsh-syntax-highlighting \
-&& git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh \
 && mkdir -p ~/.config/nvim \
 && curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
 && git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
 
 # install python environment
-RUN pacman -S --noconfirm python2 python3 \
-&& pacman -S --noconfirm python2-pip python-pip \
+RUN pacman -S --noconfirm python python-pip \
 && pip install -U pip \
-&& pip install requests pyquery ipython \
-&& pip3 install -U pip \
-&& pip3 install requests pyquery node_vm2 pipenv ipython
+&& pip install requests pyquery node_vm2 beautifulsoup4 lxml ipython aiohttp
 
 RUN chsh -s /bin/zsh \
 && ln ~/.vimrc ~/.config/nvim/init.vim \
 && nvim +PlugInstall +q +UpdateRemotePlugins +q \
 && pacman -Scc --noconfirm
+
+RUN wget "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS NF Regular.ttf" \
+&& mkdir -p ~/.fonts/ \
+&& mv "MesloLGS NF Regular.ttf" ~/.fonts/ \
+&& zsh -ic "source ~/.zshrc" \
+&& chsh -s /bin/zsh
 
 CMD ["/bin/zsh"]
