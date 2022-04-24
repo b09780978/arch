@@ -10,14 +10,6 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 
-" UI
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline_skip_empty_sections = 1
-
 Plug 'tomasr/molokai'
 let g:molokai_original = 1
 let g:rehash256 = 1
@@ -55,6 +47,7 @@ let g:EasyMotion_smartcase = 1
 Plug 'hdima/python-syntax',{'for': ['python']}
 let python_highlight_all = 1
 Plug 'zchee/deoplete-jedi',{'for': ['python']}
+let g:jedi#force_py_version=3
 
 call plug#end()
 
@@ -128,13 +121,10 @@ set foldlevel=4
 " Filetype Related
 autocmd FileType python setlocal et sta  sw=4 sts=4 cc=80 completeopt-=preview
 autocmd FileType html   setlocal et sw=2 sts=2
-autocmd FileType ruby   setlocal et sw=2 sts=2
 
 " Run File
-autocmd filetype ruby       nnoremap <C-c> :w <bar> exec 'term ruby '.shellescape('%')<CR>
 autocmd filetype javascript nnoremap <C-c> :w <bar> exec 'term node '.shellescape('%')<CR>
 autocmd filetype shell      nnoremap <C-c> :w <bar> exec 'term bash '.shellescape('%')<CR>
-autocmd filetype php        nnoremap <C-c> :w <bar> exec 'term php  -f '.shellescape('%')<CR>
-autocmd filetype python     nnoremap <C-c> :w <bar> exec 'term  python '.shellescape('%')<CR>
+autocmd filetype python     nnoremap <C-c> :w <bar> exec 'term python '.shellescape('%')<CR>
 autocmd filetype c          nnoremap <C-c> :w <bar> exec 'term gcc  -o %:r '.shellescape('%').' -std=c11 -Ofast -Wall && ./%:r'<CR>
 autocmd filetype cpp        nnoremap <C-c> :w <bar> exec 'term g++  -o %:r '.shellescape('%').' -std=c++14 -Ofast -Wall && ./%:r'<CR>
