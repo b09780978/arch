@@ -12,7 +12,8 @@ WORKDIR /root
 COPY .bashrc .
 COPY .vimrc .
 COPY .zshrc .
-COPY .conf .
+COPY .tmux.conf .
+COPY .p10k.zsh .
 
 # install basic tool
 RUN pacman -Syyu --needed base --noconfirm \
