@@ -13,7 +13,6 @@ COPY .bashrc .
 COPY .vimrc .
 COPY .zshrc .
 COPY .tmux.conf .
-COPY .p10k.zsh .
 
 # install basic tool
 RUN pacman -Syyu --needed base --noconfirm \
